@@ -1,10 +1,8 @@
----
-
 ## **Bulk SMS API Documentation**
 
 ### **Base URL**
 
-https://apisalticon.onekitty.co.ke/kitty/send-sms/
+`https://apisalticon.onekitty.co.ke/kitty/send-sms/`
 
 ---
 
@@ -40,22 +38,26 @@ The request body should be in JSON format and include the following fields:
 
 #### **Sample Request**
 
-curl \-X POST https://apisalticon.onekitty.co.ke/kitty/send-sms/ \\  
-     \-H "Content-Type: application/json" \\  
-     \-d '{  
-          "api\_key": "be3286365acabe67cad456d5f5c2ea3f61d526144348a1976d67cc9313r1271a",  
-          "message": "Hello\! This is a test SMS.",  
-          "recipient": \["`254712345678`", "`254712345678`"\]  
+```bash
+curl -X POST https://apisalticon.onekitty.co.ke/kitty/send-sms/ \
+     -H "Content-Type: application/json" \
+     -d '{
+          "api_key": "be3286365acabe67cad456d5f5c2ea3f61d526144348a1976d67cc9313r1271a",
+          "message": "Hello! This is a test SMS.",
+          "recipient": ["254712345678", "254712345678"]
          }'
+```
 
-{  
-  "api\_key": "be3286365acab\*\*\*\*\*\*\*\*\*\*\*271a",  
-  "message": "Hello\! This is a test SMS sent using the Bulk SMS API.",  
-  "recipient": \[  
-	"254733550051",  
-	"254733550051"  
-  \]  
+```json
+{
+  "api_key": "be3286365acab**********271a",
+  "message": "Hello! This is a test SMS sent using the Bulk SMS API.",
+  "recipient": [
+    "254733550051",
+    "254733550051"
+  ]
 }
+```
 
 ---
 
@@ -71,30 +73,34 @@ The API will return a JSON response with the details of the SMS sent and the sta
 
 #### **Sample Success Response**
 
-{  
-  "status": "success",  
-  "message": "SMS sent successfully",  
-  "data": {  
-    "recipients": \[  
-      {  
-        "number": "`254712345678`",  
-        "status": "delivered"  
-      },  
-      {  
-        "number": "`254712345678`",  
-        "status": "queued"  
-      }  
-    \]  
-  }  
+```json
+{
+  "status": "success",
+  "message": "SMS sent successfully",
+  "data": {
+    "recipients": [
+      {
+        "number": "254712345678",
+        "status": "delivered"
+      },
+      {
+        "number": "254712345678",
+        "status": "queued"
+      }
+    ]
+  }
 }
+```
 
 #### **Sample Error Response**
 
-{  
-  "status": "error",  
-  "message": "Invalid API key",  
-  "data": null  
+```json
+{
+  "status": "error",
+  "message": "Invalid API key",
+  "data": null
 }
+```
 
 ---
 
@@ -121,6 +127,4 @@ The API will return a JSON response with the details of the SMS sent and the sta
 1. **Secure API Key**: Never expose your API key publicly or hard-code it in client-side applications. Use environment variables for secure storage.  
 2. **Validate Input**: Ensure recipient phone numbers are valid before sending the request to avoid unnecessary errors.  
 3. **Handle Errors Gracefully**: Implement logic in your application to retry or handle errors such as queued or failed delivery statuses.
-
----
-
+```
